@@ -28,7 +28,4 @@ services:
     staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: regetech-backend-api
-          property: host
+        value: https://regetech-backend-api.onrender.com/api
