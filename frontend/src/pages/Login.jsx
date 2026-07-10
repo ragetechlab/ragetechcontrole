@@ -10,8 +10,12 @@ export default function Login({ onLoginSuccess }) {
     setLoading(true);
 
     // Identificar a URL base da API
-    const API_URL = import.meta.env.VITE_API_URL 
-      ? `${import.meta.env.VITE_API_URL}/auth/login.php`
+    let baseUrl = import.meta.env.VITE_API_URL;
+    if (baseUrl && !baseUrl.startsWith('http://') && !baseUrl.startsWith('https://')) {
+      baseUrl = `https://${baseUrl}`;
+    }
+    const API_URL = baseUrl 
+      ? `${baseUrl}/auth/login.php`
       : window.location.origin.includes('5173') 
         ? 'http://localhost:8000/api/auth/login.php' 
         : '/backend/api/auth/login.php'; // Caminho relativo em produção

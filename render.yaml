@@ -1,8 +1,8 @@
 services:
-  # 1. Serviço de Backend (API PHP)
+  # 1. Serviço de Backend (API PHP via Docker)
   - type: web
     name: regetech-backend-api
-    env: php
+    runtime: docker
     rootDir: backend
     plan: free
     envVars:
@@ -19,10 +19,10 @@ services:
       - key: DB_PASSWORD
         sync: false # O Render solicitará que você digite esta senha ao criar o blueprint
 
-  # 2. Serviço de Frontend (React SPA)
+  # 2. Serviço de Frontend (React SPA Estático)
   - type: web
     name: regetech-controle-painel
-    env: static
+    runtime: static
     rootDir: frontend
     buildCommand: npm run build
     staticPublishPath: dist
@@ -32,4 +32,4 @@ services:
         fromService:
           type: web
           name: regetech-backend-api
-          property: url
+          property: host

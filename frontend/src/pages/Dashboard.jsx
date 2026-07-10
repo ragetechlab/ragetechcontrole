@@ -46,11 +46,16 @@ export default function Dashboard({ token, usuario, onLogout }) {
 
   // Helper para obter URL base
   const getApiUrl = (endpoint) => {
-    return import.meta.env.VITE_API_URL 
-      ? `${import.meta.env.VITE_API_URL}/${endpoint}`
-      : window.location.origin.includes('5173') 
-        ? `http://localhost:8000/api/${endpoint}`
-        : `/backend/api/${endpoint}`;
+    let baseUrl = import.meta.env.VITE_API_URL;
+    if (baseUrl) {
+      if (!baseUrl.startsWith('http://') && !baseUrl.startsWith('https://')) {
+        baseUrl = `https://${baseUrl}`;
+      }
+      return `${baseUrl}/${endpoint}`;
+    }
+    return window.location.origin.includes('5173') 
+      ? `http://localhost:8000/api/${endpoint}`
+      : `/backend/api/${endpoint}`;
   };
 
   // Carregar Estatísticas
