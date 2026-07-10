@@ -51,6 +51,9 @@ export default function Dashboard({ token, usuario, onLogout }) {
       if (!baseUrl.startsWith('http://') && !baseUrl.startsWith('https://')) {
         baseUrl = `https://${baseUrl}`;
       }
+      if (!baseUrl.endsWith('/api') && !baseUrl.endsWith('/api/')) {
+        baseUrl = baseUrl.replace(/\/$/, '') + '/api';
+      }
       return `${baseUrl}/${endpoint}`;
     }
     return window.location.origin.includes('5173') 

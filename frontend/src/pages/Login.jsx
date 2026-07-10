@@ -11,8 +11,13 @@ export default function Login({ onLoginSuccess }) {
 
     // Identificar a URL base da API
     let baseUrl = import.meta.env.VITE_API_URL;
-    if (baseUrl && !baseUrl.startsWith('http://') && !baseUrl.startsWith('https://')) {
-      baseUrl = `https://${baseUrl}`;
+    if (baseUrl) {
+      if (!baseUrl.startsWith('http://') && !baseUrl.startsWith('https://')) {
+        baseUrl = `https://${baseUrl}`;
+      }
+      if (!baseUrl.endsWith('/api') && !baseUrl.endsWith('/api/')) {
+        baseUrl = baseUrl.replace(/\/$/, '') + '/api';
+      }
     }
     const API_URL = baseUrl 
       ? `${baseUrl}/auth/login.php`
