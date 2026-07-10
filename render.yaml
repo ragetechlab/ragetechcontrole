@@ -1,0 +1,35 @@
+services:
+  # 1. Serviço de Backend (API PHP)
+  - type: web
+    name: regetech-backend-api
+    env: php
+    rootDir: backend
+    plan: free
+    envVars:
+      - key: DB_DRIVER
+        value: pgsql
+      - key: DB_HOST
+        sync: false # O Render solicitará que você digite este valor ao criar o blueprint
+      - key: DB_PORT
+        value: "5432"
+      - key: DB_NAME
+        value: postgres
+      - key: DB_USER
+        value: postgres
+      - key: DB_PASSWORD
+        sync: false # O Render solicitará que você digite esta senha ao criar o blueprint
+
+  # 2. Serviço de Frontend (React SPA)
+  - type: web
+    name: regetech-controle-painel
+    env: static
+    rootDir: frontend
+    buildCommand: npm run build
+    publishDir: dist
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: regetech-backend-api
+          property: url
