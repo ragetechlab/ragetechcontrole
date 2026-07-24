@@ -32,9 +32,9 @@ if ($method === 'POST') {
     $empresa = isset($input['empresa']) ? trim(strip_tags($input['empresa'])) : null;
     $whatsapp = isset($input['whatsapp']) ? trim(strip_tags($input['whatsapp'])) : null;
     
-    if (empty($nome) || empty($email)) {
+    if (empty($nome) || empty($email) || empty($empresa) || empty($whatsapp)) {
         http_response_code(400);
-        echo json_encode(["status" => "error", "message" => "Nome completo e e-mail corporativo são obrigatórios."]);
+        echo json_encode(["status" => "error", "message" => "Nome completo, e-mail corporativo, empresa e whatsapp são obrigatórios."]);
         exit();
     }
     

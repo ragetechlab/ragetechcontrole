@@ -287,9 +287,10 @@ export default function LeadModal({ lead, onClose, onSave, onDelete, usuariosDis
               {/* Empresa, CNPJ & WhatsApp */}
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 <div style={{ flex: 1, minWidth: '150px' }}>
-                  <label style={{ display: 'block', marginBottom: '0.35rem', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Empresa</label>
+                  <label style={{ display: 'block', marginBottom: '0.35rem', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>Empresa *</label>
                   <input 
                     type="text"
+                    required
                     value={empresa}
                     onChange={(e) => setEmpresa(e.target.value)}
                     placeholder="Ex: Rage Tech Lab"
@@ -325,9 +326,10 @@ export default function LeadModal({ lead, onClose, onSave, onDelete, usuariosDis
                   />
                 </div>
                 <div style={{ flex: 1, minWidth: '150px' }}>
-                  <label style={{ display: 'block', marginBottom: '0.35rem', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>WhatsApp</label>
+                  <label style={{ display: 'block', marginBottom: '0.35rem', color: 'var(--text-secondary)', fontSize: '0.8rem' }}>WhatsApp *</label>
                   <input 
                     type="text"
+                    required
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
                     placeholder="Ex: 11999999999"
